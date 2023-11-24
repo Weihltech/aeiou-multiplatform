@@ -34,8 +34,8 @@ import androidx.compose.ui.graphics.Color
 @Composable
 fun appColors(): Colors {
     return MaterialTheme.colors.copy(
-        primary = Color(0xFF008EFF),
-        primaryVariant = Color(0xFF008EFF),
+        primary = Color(0xFFDC9C3D),
+        primaryVariant = Color(0xFFDC9C3D),
         secondary = Color(0xFFFF9800),
         secondaryVariant = Color(0xFFFF9800),
         error = Color(0xFFB00020),
