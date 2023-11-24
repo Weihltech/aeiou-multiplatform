@@ -1,15 +1,15 @@
-package widgets
+package pages.home
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.MutableState
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.painterResource
 
@@ -33,17 +33,16 @@ data class MainBottomBarItem(
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun MainBottomBar() {
-    var selectedItem by remember { mutableStateOf(0) }
-    BottomNavigation {
+fun HomeBottomBar(tabIndex: MutableState<Int>) {
+    BottomNavigation(modifier = Modifier.fillMaxWidth().height(56.dp)) {
         items.onEachIndexed { index, item ->
             BottomNavigationItem(
                 icon = {
                     Icon(painterResource(item.icon), null)
                 },
                 label = { Text(text = item.name) },
-                selected = selectedItem == index,
-                onClick = { selectedItem = index }
+                selected = index == tabIndex.value,
+                onClick = {tabIndex.value = index}
             )
         }
     }
