@@ -12,3 +12,10 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
 
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+Kotlin Multiplatform 模板
+https://github.com/JetBrains/compose-multiplatform-ios-android-template
+
+KMP 多平台依赖库，架构组件选型
+https://github.com/terrakok/kmp-awesome
+
