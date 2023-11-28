@@ -10,7 +10,7 @@ import kotlinx.serialization.json.Json
  */
 
 class ApiBirds {
-    val url = "https://github.com/SebastianAigner/demo-image-api/blob/main/pictures.json"
+   private val url = "https://github.com/SebastianAigner/demo-image-api/blob/main/pictures.json"
 
     suspend fun fetchBirdImages(): List<BirdImage> {
         //val content = httpClient.get(url).body<String>()

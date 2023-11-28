@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.utils.addComposeArgsToKotlinCompile
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.compose.ExperimentalComposeLibrary
 
@@ -12,7 +13,7 @@ kotlin {
     androidTarget {
         compilations.all {
             kotlinOptions {
-                jvmTarget = "1.8"
+                jvmTarget = JavaVersion.VERSION_11.toString()
             }
         }
     }
@@ -61,8 +62,8 @@ kotlin {
             implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
             implementation("org.jetbrains.kotlin:kotlin-serialization:1.9.20")
             implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
-
-
+            implementation("dev.icerock.moko:mvvm-core:0.16.1")
+            implementation("dev.icerock.moko:mvvm-compose:0.16.1")
         }
     }
 }
@@ -99,8 +100,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     dependencies {
         debugImplementation(libs.compose.ui.tooling)

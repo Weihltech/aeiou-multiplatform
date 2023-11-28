@@ -27,14 +27,16 @@ https://github.com/Kamel-Media/Kamel
 HttpClient
 https://api.ktor.io/ktor-client/ktor-client-core/io.ktor.client/index.html
 
+------
 MVVM
 https://github.com/icerockdev/moko-mvvm
 
+-----
 Ktor 网络请求，除了 core ,需要依赖对应平台库代码，以下是对应表
 https://ktor.io/docs/http-client-engines.html#limitations
 
+-----
 依赖库介绍：
-
 [Link](https://ktor.io/docs/serialization-client.html) io.ktor:ktor-client-content-negotiation 是 Ktor 的一个插件，它主要有两个用途12：
 -请求内容需要做富文本传输解析等
 -在客户端和服务器之间协商媒体类型。为此，它使用了 Accept 和 Content-Type 头12。
