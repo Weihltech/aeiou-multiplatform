@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    kotlin("plugin.serialization") version "1.9.20"
 }
 
 kotlin {
@@ -15,9 +16,9 @@ kotlin {
             }
         }
     }
-    
+
     jvm("desktop")
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -28,10 +29,10 @@ kotlin {
             isStatic = true
         }
     }
-    
+
     sourceSets {
         val desktopMain by getting
-        
+
         androidMain.dependencies {
             implementation(libs.compose.ui)
             implementation(libs.compose.ui.tooling.preview)
@@ -55,8 +56,13 @@ kotlin {
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
 
-            implementation("io.ktor:ktor-client-core:2.3.6")
             implementation("media.kamel:kamel-image:0.9.0")
+            implementation("io.ktor:ktor-client-core:2.3.6")
+            implementation("io.ktor:ktor-client-content-negotiation:2.3.6")
+            implementation("org.jetbrains.kotlin:kotlin-serialization:1.9.20")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
+
+
         }
     }
 }

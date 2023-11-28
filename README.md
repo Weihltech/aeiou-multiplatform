@@ -33,4 +33,12 @@ https://github.com/icerockdev/moko-mvvm
 Ktor 网络请求，除了 core ,需要依赖对应平台库代码，以下是对应表
 https://ktor.io/docs/http-client-engines.html#limitations
 
+依赖库介绍：
+
+[Link](https://ktor.io/docs/serialization-client.html) io.ktor:ktor-client-content-negotiation 是 Ktor 的一个插件，它主要有两个用途12：
+-请求内容需要做富文本传输解析等
+-在客户端和服务器之间协商媒体类型。为此，它使用了 Accept 和 Content-Type 头12。
+-在发送请求和接收响应时，以特定格式序列化/反序列化内容12。
+-解析 Json 工件依赖 "io.ktor:ktor-serialization-kotlinx-json:2.3.6" , 依赖指向特定系列化工件 "org.jetbrains.kotlin:kotlin-serialization:1.9.20"
+
 

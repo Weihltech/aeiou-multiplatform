@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,6 +18,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import datas.remote.ApiBirds
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import org.jetbrains.compose.resources.ExperimentalResourceApi
@@ -46,7 +48,14 @@ fun HomeContent() {
 @Composable
 fun Contents(tabSelectIndex: MutableState<Int>) {
     Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = "${tabSelectIndex.value}", modifier = Modifier.align(Alignment.TopStart))
+
+        var info = remember { mutableStateOf("${tabSelectIndex.value}") }
+
+        LaunchedEffect(Unit){
+            info.value = ApiBirds().fetchBirdImages().toString()
+        }
+
+        Text(text = info.value, modifier = Modifier.align(Alignment.TopStart))
 
 
         var greetingText by remember { mutableStateOf("Hello World!") }
