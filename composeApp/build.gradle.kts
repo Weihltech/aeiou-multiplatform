@@ -36,9 +36,17 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+
+            implementation("io.ktor:ktor-client-okhttp:2.3.6")
+        }
+        iosMain.dependencies {
+
+            implementation("io.ktor:ktor-client-darwin:2.3.6")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
+
+            implementation("io.ktor:ktor-client-okhttp:2.3.6")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -46,6 +54,9 @@ kotlin {
             implementation(compose.material)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+
+            implementation("io.ktor:ktor-client-core:2.3.6")
+            implementation("media.kamel:kamel-image:0.9.0")
         }
     }
 }

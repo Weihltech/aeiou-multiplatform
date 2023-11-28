@@ -19,3 +19,18 @@ https://github.com/JetBrains/compose-multiplatform-ios-android-template
 KMP 多平台依赖库，架构组件选型
 https://github.com/terrakok/kmp-awesome
 
+Image Loader
+https://github.com/Kamel-Media/Kamel
+-使用 Ktor HttpClient 请求框架，内部引用了 core ，需要依赖对应平台库代码，
+-比如 android  `{  implementation("io.ktor:ktor-client-okhttp:2.3.6") }`
+
+HttpClient
+https://api.ktor.io/ktor-client/ktor-client-core/io.ktor.client/index.html
+
+MVVM
+https://github.com/icerockdev/moko-mvvm
+
+Ktor 网络请求，除了 core ,需要依赖对应平台库代码，以下是对应表
+https://ktor.io/docs/http-client-engines.html#limitations
+
+
