@@ -43,4 +43,15 @@ https://ktor.io/docs/http-client-engines.html#limitations
 -在发送请求和接收响应时，以特定格式序列化/反序列化内容12。
 -解析 Json 工件依赖 "io.ktor:ktor-serialization-kotlinx-json:2.3.6" , 依赖指向特定系列化工件 "org.jetbrains.kotlin:kotlin-serialization:1.9.20"
 
+----
+直接访问 github 项目资源
+```
+原始GitHub 文件地址： https://github.com/SebastianAigner/demo-image-api/blob/main/pictures.json
+可Http访问资源内容的地址：https://raw.githubusercontent.com/SebastianAigner/demo-image-api/main/pictures.json
+- raw.githubusercontent.com : 资源服务器
+- SebastianAigner : 用户名
+- demo-image-api : 仓库名
+- master/demo/example.json : 文件地址
+```
+
 
