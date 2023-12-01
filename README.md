@@ -13,6 +13,12 @@ This is a Kotlin Multiplatform project targeting Android, iOS, Desktop.
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
 
+支持：
+1、网络请求（未加密）
+2、图片加载
+3、ViewModule ，MVVM MVI
+
+
 Kotlin Multiplatform 模板
 https://github.com/JetBrains/compose-multiplatform-ios-android-template
 
