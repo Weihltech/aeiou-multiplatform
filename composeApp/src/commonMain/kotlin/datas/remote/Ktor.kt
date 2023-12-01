@@ -11,9 +11,11 @@ import io.ktor.serialization.kotlinx.json.json
  * @date 2023/11/28
  */
 
-val httpClient = HttpClient {
-    // 请求内容包含富文本，用 json 解析
-    install(ContentNegotiation) {
-        json()
+val httpClient by lazy {
+    HttpClient {
+        // 请求内容包含富文本，用 json 解析
+        install(ContentNegotiation) {
+            json()
+        }
     }
 }

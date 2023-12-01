@@ -99,9 +99,8 @@ fun Contents(tabSelectIndex: MutableState<Int>, homeUiState: HomeUiState) {
 @Composable
 fun BirdImageCell(it: BirdImage) {
     KamelImage(
-        asyncPainterResource("https://p0.pipi.cn/basicdata/25bfd6d7537c69e7aa71f711b81d429d59d64.jpg?imageMogr2/thumbnail/2500x2500%3E"),
+        asyncPainterResource("https://raw.githubusercontent.com/SebastianAigner/demo-image-api/main/${it.path}"),
         contentScale = ContentScale.Crop,
-        modifier = Modifier.fillMaxSize(),
         contentDescription = ""
     )
 }
