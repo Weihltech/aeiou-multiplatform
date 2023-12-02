@@ -16,6 +16,7 @@ class ApiBirds {
         "https://raw.githubusercontent.com/SebastianAigner/demo-image-api/main/pictures.json"
 
     suspend fun fetchBirdImages(): List<BirdImage> {
+        //TODO 注意这里访问会直接报异常，没有try
         return Json.decodeFromString(httpClient.get(url).body())
     }
 }
