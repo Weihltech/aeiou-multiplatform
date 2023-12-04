@@ -1,12 +1,12 @@
-import com.android.build.gradle.internal.utils.addComposeArgsToKotlinCompile
-import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.compose.ExperimentalComposeLibrary
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     kotlin("plugin.serialization") version "1.9.20"
+    id("app.cash.sqldelight") version "2.0.1"
 }
 
 kotlin {
@@ -40,17 +40,19 @@ kotlin {
             implementation(libs.androidx.activity.compose)
 
             implementation("io.ktor:ktor-client-okhttp:2.3.6")
+            implementation("app.cash.sqldelight:android-driver:2.0.1")
         }
         iosMain.dependencies {
 
             implementation("io.ktor:ktor-client-darwin:2.3.6")
+            implementation("app.cash.sqldelight:native-driver:2.0.1")
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
 
-
             implementation("io.ktor:ktor-client-okhttp:2.3.6")
             implementation("org.jetbrains.kotlinx:kotlinx-coroutines-swing:1.7.3")
+            implementation("app.cash.sqldelight:sqlite-driver:2.0.1")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -66,6 +68,7 @@ kotlin {
             implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
             implementation("dev.icerock.moko:mvvm-core:0.16.1")
             implementation("dev.icerock.moko:mvvm-compose:0.16.1")
+
         }
     }
 }
@@ -118,6 +121,14 @@ compose.desktop {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
             packageName = "org.wells.aeiou"
             packageVersion = "1.0.0"
+        }
+    }
+}
+
+sqldelight {
+    databases {
+        create("Database") {
+            packageName.set("org.wells.aeiou")
         }
     }
 }

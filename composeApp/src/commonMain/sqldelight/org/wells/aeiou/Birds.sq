@@ -1,0 +1,11 @@
+ CREATE TABLE birdsInfo (
+      id INTEGER PRIMARY KEY NOT NULL,
+      infos TEXT NOT NULL
+ );
+
+
+queryAll:
+SELECT * FROM birdsInfo;
+
+insert:
+INSERT INTO birdsInfo(id, infos) VALUES (?, ?);
