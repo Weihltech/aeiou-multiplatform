@@ -1,5 +1,6 @@
 package datas.remote
 
+import datas.entitys.BirdInfo
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json
@@ -15,7 +16,7 @@ class ApiBirds {
     private val url =
         "https://raw.githubusercontent.com/SebastianAigner/demo-image-api/main/pictures.json"
 
-    suspend fun fetchBirdImages(): List<BirdImage> {
+    suspend fun fetchBirdImages(): List<BirdInfo> {
         //TODO 注意这里访问会直接报异常，没有try
         return Json.decodeFromString(httpClient.get(url).body())
     }

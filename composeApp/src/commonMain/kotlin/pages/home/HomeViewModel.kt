@@ -1,7 +1,7 @@
 package pages.home
 
 import datas.remote.ApiBirds
-import datas.remote.BirdImage
+import datas.entitys.BirdInfo
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
  */
 
 data class HomeUiState(
-    val birdImages: List<BirdImage> = emptyList()
+    val birdInfos: List<BirdInfo> = emptyList()
 )
 
 class HomeViewModel : ViewModel() {
@@ -33,13 +33,13 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             val datas = fetchBirdImages()
             _uiState.update {
-                it.copy(birdImages = datas)
+                it.copy(birdInfos = datas)
             }
         }
     }
 
     private val api = ApiBirds()
-    private suspend fun fetchBirdImages(): List<BirdImage> {
+    private suspend fun fetchBirdImages(): List<BirdInfo> {
         return api.fetchBirdImages()
     }
 

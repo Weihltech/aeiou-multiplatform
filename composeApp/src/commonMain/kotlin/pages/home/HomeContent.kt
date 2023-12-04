@@ -21,7 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import datas.remote.BirdImage
+import datas.entitys.BirdInfo
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import io.kamel.image.KamelImage
@@ -63,7 +63,7 @@ fun Contents(tabSelectIndex: MutableState<Int>, homeUiState: HomeUiState) {
             horizontalArrangement = Arrangement.spacedBy(5.dp),
             verticalArrangement = Arrangement.spacedBy(5.dp)
         ) {
-            items(homeUiState.birdImages) {
+            items(homeUiState.birdInfos) {
                 BirdImageCell(it)
             }
         }
@@ -95,7 +95,7 @@ fun Contents(tabSelectIndex: MutableState<Int>, homeUiState: HomeUiState) {
 }
 
 @Composable
-fun BirdImageCell(it: BirdImage) {
+fun BirdImageCell(it: BirdInfo) {
     KamelImage(
         asyncPainterResource("https://raw.githubusercontent.com/SebastianAigner/demo-image-api/main/${it.path}"),
         modifier = Modifier.background(Color.LightGray).fillMaxWidth().aspectRatio(1.0f),
