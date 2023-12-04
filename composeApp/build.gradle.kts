@@ -127,8 +127,8 @@ compose.desktop {
 
 sqldelight {
     databases {
-        create("Database") {
-            packageName.set("org.wells.aeiou")
+        create("AeiouDatabase") {
+            packageName.set("org.wells.aeiou.database")
         }
     }
 }

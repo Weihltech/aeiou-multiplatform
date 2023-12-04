@@ -1,6 +1,7 @@
-package datas.remote
+package datas.remote.api
 
 import datas.entitys.BirdInfo
+import datas.remote.httpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
 import kotlinx.serialization.json.Json

@@ -1,6 +1,7 @@
 package pages.home
 
-import datas.remote.ApiBirds
+import datas.BirdsRepository
+import datas.remote.api.ApiBirds
 import datas.entitys.BirdInfo
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -38,9 +39,8 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private val api = ApiBirds()
     private suspend fun fetchBirdImages(): List<BirdInfo> {
-        return api.fetchBirdImages()
+        return BirdsRepository().fetchAllBirds()
     }
 
 

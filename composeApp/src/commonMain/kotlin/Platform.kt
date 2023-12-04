@@ -1,5 +1,4 @@
 import app.cash.sqldelight.db.SqlDriver
-import org.wells.aeiou.Database
 
 interface Platform {
     val name: String
@@ -7,12 +6,5 @@ interface Platform {
 
 expect fun getPlatform(): Platform
 
+expect fun createDriver():SqlDriver
 
-expect class DriverFactory {
-    fun createDriver(): SqlDriver
-}
-
-fun createDatabase(driverFactory: DriverFactory): Database {
-    val driver = driverFactory.createDriver()
-    return Database(driver)
-}

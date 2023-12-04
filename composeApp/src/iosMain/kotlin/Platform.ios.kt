@@ -1,6 +1,6 @@
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import org.wells.aeiou.Database
+import org.wells.aeiou.database.AeiouDatabase
 import platform.UIKit.UIDevice
 
 class IOSPlatform: Platform {
@@ -9,8 +9,6 @@ class IOSPlatform: Platform {
 
 actual fun getPlatform(): Platform = IOSPlatform()
 
-actual class DriverFactory {
-    actual fun createDriver(): SqlDriver {
-        return NativeSqliteDriver(Database.Schema, "test.db")
-    }
+actual fun createDriver(): SqlDriver {
+    return NativeSqliteDriver(AeiouDatabase.Schema, "aeiou.db")
 }

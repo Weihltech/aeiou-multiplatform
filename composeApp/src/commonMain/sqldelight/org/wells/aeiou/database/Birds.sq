@@ -1,0 +1,11 @@
+ CREATE TABLE birdRow (
+      id INTEGER PRIMARY KEY NOT NULL,
+      infos TEXT NOT NULL
+ );
+
+
+queryAll:
+SELECT * FROM birdRow;
+
+insert:
+INSERT INTO birdRow(id, infos) VALUES (?, ?);
