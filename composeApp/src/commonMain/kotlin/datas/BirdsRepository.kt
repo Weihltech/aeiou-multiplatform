@@ -3,6 +3,9 @@ package datas
 import datas.entitys.BirdInfo
 import datas.local.BirdsLocal
 import datas.remote.BirdsRemote
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.wells.aeiou.database.BirdsQueries
@@ -23,10 +26,12 @@ class BirdsRepository : IBirdsRepository {
 
         val remote = BirdsRemote().fetchAllBirds()
         if (remote.isNotEmpty()) {
-            BirdsQueries(aeiouSqlDriver).insert(
-                id = null,
-                infos = Json.encodeToString(remote)
-            )
+            withContext(Dispatchers.IO) {
+                BirdsQueries(aeiouSqlDriver).insert(
+                    id = null,
+                    infos = Json.encodeToString(remote)
+                )
+            }
             return remote
         }
 

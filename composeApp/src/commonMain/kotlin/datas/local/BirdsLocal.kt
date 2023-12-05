@@ -14,8 +14,13 @@ import org.wells.aeiou.database.BirdsQueries
  */
 class BirdsLocal : IBirdsRepository {
     override suspend fun fetchAllBirds(): List<BirdInfo> {
-        return BirdsQueries(aeiouSqlDriver).queryAll().executeAsList().map {
-            Json.decodeFromString(it.infos)
-        }
+
+       BirdsQueries(aeiouSqlDriver).queryAll().executeAsList().lastOrNull()?.let {
+           runCatching {
+               return  Json.decodeFromString(it.infos)
+           }
+       }
+
+        return emptyList()
     }
 }
