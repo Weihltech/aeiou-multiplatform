@@ -27,7 +27,7 @@ kotlin {
     ).forEach { iosTarget ->
         iosTarget.binaries.framework {
             baseName = "ComposeApp"
-            isStatic = true
+            isStatic = false
         }
     }
 
@@ -131,4 +131,5 @@ sqldelight {
             packageName.set("org.wells.aeiou.database")
         }
     }
+    linkSqlite.set(true)
 }

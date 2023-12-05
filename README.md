@@ -60,4 +60,26 @@ https://ktor.io/docs/http-client-engines.html#limitations
 - master/demo/example.json : 文件地址
 ```
 
+----
+关于 SQLite 主页
+https://www.sqlitetutorial.net/
+
+
+-------
+问答：
+```
+A:关于 iosMain 使用 sqldelight 数据库打包编译报错的问题，`Undefined symbols for architecture arm64:`
+配置：
+framework.isStatic = false 是Gradle构建系统中的一个配置选项，用于指定是否将ComposeApp.framework作为静态库链接到您的应用程序中。
+如果将其设置为false，则ComposeApp.framework将被链接为动态库，否则将被链接为静态库。
+区别：
+静态库是在编译时链接到应用程序中的库，而动态库是在运行时链接到应用程序中的库。
+使用静态库可以使应用程序的二进制文件更小，但可能会导致较长的编译时间和较大的内存占用。
+使用动态库可以使应用程序的二进制文件更大，但可以减少编译时间和内存占用。
+如果您不确定应该使用静态库还是动态库，请考虑您的应用程序的需求以及您的开发流程。
+如果您需要在多个应用程序中共享ComposeApp.framework，则可能希望将其链接为动态库。
+否则，将其链接为静态库可能更合适。
+
+```
+
 
