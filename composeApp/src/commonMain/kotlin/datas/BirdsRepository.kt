@@ -21,17 +21,20 @@ class BirdsRepository : IBirdsRepository {
 
         val local = BirdsLocal().fetchAllBirds()
         if (local.isNotEmpty()) {
+
+            println("fetchAllBirds . Local ")
             return local
         }
 
         val remote = BirdsRemote().fetchAllBirds()
         if (remote.isNotEmpty()) {
             withContext(Dispatchers.IO) {
-                BirdsQueries(aeiouSqlDriver).insert(
+                aeiouDatabase.birdsQueries.insert(
                     id = null,
                     infos = Json.encodeToString(remote)
                 )
             }
+            println("fetchAllBirds . Remote ")
             return remote
         }
 

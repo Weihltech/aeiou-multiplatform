@@ -2,6 +2,7 @@ package datas
 
 import createDriver
 import datas.entitys.BirdInfo
+import org.wells.aeiou.database.AeiouDatabase
 
 /**
  * @desc
@@ -11,6 +12,7 @@ import datas.entitys.BirdInfo
  */
 
 val aeiouSqlDriver by lazy { createDriver() }
+val aeiouDatabase by lazy { AeiouDatabase(aeiouSqlDriver) }
 
 interface IBirdsRepository {
     suspend fun fetchAllBirds(): List<BirdInfo>
