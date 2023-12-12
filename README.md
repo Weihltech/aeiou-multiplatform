@@ -84,4 +84,8 @@ framework.isStatic = false 是Gradle构建系统中的一个配置选项，用�
 
 ```
 
+----
+关于读取缓存文件
+https://xxfast.github.io/KStore/overview.html
+
 

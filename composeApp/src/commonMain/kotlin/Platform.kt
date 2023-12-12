@@ -1,13 +1,12 @@
 import app.cash.sqldelight.db.SqlDriver
 import io.kamel.core.utils.File
 import io.ktor.client.plugins.cache.storage.CacheStorage
-import okio.BufferedSink
 import okio.FileSystem
-import okio.Sink
 
 interface Platform {
     val name: String
     val datas: Datas
+    fun kamelFile(path: String): File
 }
 
 // App 数据层
@@ -19,11 +18,12 @@ interface Datas {
     val cacheStorage: CacheStorage
 
     val downloadStorage: DownloadStorage
+
 }
 
 interface DownloadStorage {
     val dir: String
-    val fileSystem:FileSystem
+    val fileSystem: FileSystem
 }
 
 // common

@@ -7,8 +7,6 @@ import io.ktor.http.Url
 import okio.FileSystem
 import org.wells.aeiou.database.AeiouDatabase
 import platform.Foundation.NSCachesDirectory
-import platform.Foundation.NSDocumentDirectory
-import platform.Foundation.NSSearchPathDirectory
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSUserDomainMask
 import platform.UIKit.UIDevice
@@ -26,6 +24,10 @@ class IOSPlatform : Platform {
                 get() = createDownloadStorage()
 
         }
+
+    override fun kamelFile(path: String): File {
+        return File(path)
+    }
 
     private fun createDownloadStorage(): DownloadStorage {
         return object : DownloadStorage {

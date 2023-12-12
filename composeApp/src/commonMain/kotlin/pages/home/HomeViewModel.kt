@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import platform
 
 /**
  * @desc
@@ -17,8 +18,10 @@ import kotlinx.coroutines.launch
  */
 
 data class HomeUiState(
-    val birdInfos: List<BirdInfo> = emptyList()
-)
+    val birdInfos: List<BirdInfo> = emptyList(),
+    val downloadJPG: String = ""
+) {
+}
 
 class HomeViewModel : ViewModel() {
 
@@ -35,6 +38,9 @@ class HomeViewModel : ViewModel() {
             val datas = fetchBirdImages()
             _uiState.update {
                 it.copy(birdInfos = datas)
+            }
+            _uiState.update {
+                it.copy(downloadJPG = "${platform.datas.downloadStorage.dir}/mountains-8411954_1280.jpg")
             }
         }
     }

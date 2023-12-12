@@ -1,5 +1,7 @@
 package pages.home
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,8 +26,10 @@ import androidx.compose.ui.unit.dp
 import datas.entitys.BirdInfo
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
+import io.kamel.core.utils.File
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import platform
 import theme.AppTheme
 
 /**
@@ -55,42 +59,35 @@ fun HomeContent() {
 @Composable
 fun Contents(tabSelectIndex: MutableState<Int>, homeUiState: HomeUiState) {
     Box(modifier = Modifier.fillMaxSize()) {
-
-
-        LazyVerticalGrid(
-            GridCells.Fixed(2),
-            modifier = Modifier.fillMaxSize().padding(5.dp),
-            horizontalArrangement = Arrangement.spacedBy(5.dp),
-            verticalArrangement = Arrangement.spacedBy(5.dp)
-        ) {
-            items(homeUiState.birdInfos) {
-                BirdImageCell(it)
-            }
+        when (tabSelectIndex.value) {
+            1 -> starts(homeUiState)
+            else -> news(homeUiState)
         }
 
+    }
+}
 
-        //var info = remember { mutableStateOf("${tabSelectIndex.value}") }
-        //Text(text = info.value, modifier = Modifier.align(Alignment.TopStart))
-        //
-        //
-        //var greetingText by remember { mutableStateOf("Hello World!") }
-        //var showImage by remember { mutableStateOf(false) }
-        //
-        //Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        //    Button(onClick = {
-        //        greetingText = "Compose: ${Greeting().greet()}"
-        //        showImage = !showImage
-        //    }) {
-        //        Text(greetingText)
-        //    }
-        //    AnimatedVisibility(showImage) {
-        //        KamelImage(
-        //            asyncPainterResource("https://img1.baidu.com/it/u=2292210371,42019104&fm=253&fmt=auto&app=138&f=JPEG?w=380&h=242"),
-        //            //"http://img.yun.cnhubei.com/a/10001/201903/be92fabfb22d9279f3061a9db5a1b474.jpeg"),
-        //            null
-        //        )
-        //    }
-        //}
+@Composable
+fun starts(homeUiState: HomeUiState) {
+    AnimatedVisibility(true) {
+        KamelImage(
+            asyncPainterResource(platform.kamelFile(homeUiState.downloadJPG)),
+            null
+        )
+    }
+}
+
+@Composable
+fun news(homeUiState: HomeUiState) {
+    LazyVerticalGrid(
+        GridCells.Fixed(2),
+        modifier = Modifier.fillMaxSize().padding(5.dp),
+        horizontalArrangement = Arrangement.spacedBy(5.dp),
+        verticalArrangement = Arrangement.spacedBy(5.dp)
+    ) {
+        items(homeUiState.birdInfos) {
+            BirdImageCell(it)
+        }
     }
 }
 
@@ -102,5 +99,13 @@ fun BirdImageCell(it: BirdInfo) {
         contentScale = ContentScale.Crop,
         contentDescription = ""
     )
+
+    //    AnimatedVisibility(showImage) {
+    //        KamelImage(
+    //            asyncPainterResource("https://img1.baidu.com/it/u=2292210371,42019104&fm=253&fmt=auto&app=138&f=JPEG?w=380&h=242"),
+    //            //"http://img.yun.cnhubei.com/a/10001/201903/be92fabfb22d9279f3061a9db5a1b474.jpeg"),
+    //            null
+    //        )
+    //    }
 
 }

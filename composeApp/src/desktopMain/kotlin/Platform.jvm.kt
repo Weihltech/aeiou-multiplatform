@@ -25,6 +25,10 @@ class JVMPlatform : Platform {
 
         }
 
+    override fun kamelFile(path: String): io.kamel.core.utils.File {
+        return io.kamel.core.utils.File(path)
+    }
+
     private fun createSqlDriver(): SqlDriver {
         // "jdbc:sqlite:test.db" ，持久保存
         // JdbcSqliteDriver.IN_MEMORY ,在缓存中有效

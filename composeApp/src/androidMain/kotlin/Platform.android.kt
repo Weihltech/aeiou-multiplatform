@@ -5,7 +5,6 @@ import io.ktor.client.plugins.cache.storage.CacheStorage
 import io.ktor.client.plugins.cache.storage.CachedResponseData
 import io.ktor.http.Url
 import okio.FileSystem
-import org.jetbrains.kotlin.konan.file.File
 import org.wells.aeiou.AeiouApp
 import org.wells.aeiou.database.AeiouDatabase
 
@@ -21,6 +20,10 @@ class AndroidPlatform : Platform {
                 get() = createDownloadStorage()
 
         }
+
+    override fun kamelFile(path: String): io.kamel.core.utils.File {
+        return io.kamel.core.utils.File(path)
+    }
 
 
     private fun createSqlDriver(): SqlDriver {
@@ -50,9 +53,9 @@ class AndroidPlatform : Platform {
     private fun createDownloadStorage(): DownloadStorage {
         return object : DownloadStorage {
             override val dir: String
-                get() = "${AeiouApp.context.dataDir.absolutePath}/downloads".also {dPath->
-                    File(dPath).apply {
-                        if(!exists) mkdirs()
+                get() = "${AeiouApp.context.dataDir.absolutePath}/downloads".also { dPath ->
+                    java.io.File(dPath).apply {
+                        if (!exists()) mkdirs()
                     }
                 }
             override val fileSystem: FileSystem
