@@ -1,10 +1,15 @@
 import app.cash.sqldelight.db.SqlDriver
+import io.ktor.client.plugins.cache.storage.CacheStorage
 
 interface Platform {
     val name: String
 }
 
+// common
 expect fun getPlatform(): Platform
 
-expect fun createDriver():SqlDriver
+// db sql
+expect fun createSqlDriver():SqlDriver
+
+expect fun createCacheStorage(): CacheStorage
 

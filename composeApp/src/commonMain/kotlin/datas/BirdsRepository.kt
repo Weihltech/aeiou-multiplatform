@@ -17,6 +17,12 @@ import org.wells.aeiou.database.BirdsQueries
  * @date 2023/12/4
  */
 class BirdsRepository : IBirdsRepository {
+
+    init {
+
+    }
+
+
     override suspend fun fetchAllBirds(): List<BirdInfo> {
 
         val local = BirdsLocal().fetchAllBirds()

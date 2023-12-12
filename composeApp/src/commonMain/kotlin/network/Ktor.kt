@@ -1,6 +1,8 @@
-package datas.remote
+package network
 
+import createCacheStorage
 import io.ktor.client.HttpClient
+import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 
@@ -16,6 +18,9 @@ val httpClient by lazy {
         // 请求内容包含富文本，用 json 解析
         install(ContentNegotiation) {
             json()
+        }
+        install(HttpCache) {
+            publicStorage(createCacheStorage())
         }
     }
 }
