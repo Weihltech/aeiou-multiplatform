@@ -8,7 +8,7 @@ import java.io.File
  */
 
 // data cache
-val rootDir = File("./jvm").apply {
+val rootDir = File("./src/desktopMain/datas").apply {
     if (!exists()) {
         mkdirs()
     }

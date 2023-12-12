@@ -40,6 +40,8 @@ https://github.com/icerockdev/moko-mvvm
 -----
 Ktor 网络请求，除了 core ,需要依赖对应平台库代码，以下是对应表
 https://ktor.io/docs/http-client-engines.html#limitations
+关于 下载、缓存、请求头、内容加密等等，可以参考代码片段
+https://github.com/ktorio/ktor-documentation/tree/2.3.7/codeSnippets/snippets
 
 -----
 依赖库介绍：

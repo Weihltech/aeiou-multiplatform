@@ -3,6 +3,7 @@ package datas
 import datas.entitys.BirdInfo
 import datas.local.BirdsLocal
 import datas.remote.BirdsRemote
+import datas.remote.api.ApiDownload
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
@@ -18,12 +19,11 @@ import org.wells.aeiou.database.BirdsQueries
  */
 class BirdsRepository : IBirdsRepository {
 
-    init {
-
-    }
-
 
     override suspend fun fetchAllBirds(): List<BirdInfo> {
+
+        val downTest = "https://cdn.pixabay.com/photo/2023/11/25/15/45/mountains-8411954_1280.jpg"
+        ApiDownload().fetch(downTest)
 
         val local = BirdsLocal().fetchAllBirds()
         if (local.isNotEmpty()) {

@@ -1,8 +1,6 @@
 package network
 
-import createCacheStorage
 import io.ktor.client.HttpClient
-import io.ktor.client.plugins.cache.HttpCache
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 
@@ -19,8 +17,13 @@ val httpClient by lazy {
         install(ContentNegotiation) {
             json()
         }
-        install(HttpCache) {
-            publicStorage(createCacheStorage())
-        }
+
+        //install(HttpCache) {
+        //    // 如果您使用配置的 Cache-Control 标头对资源发出两个后续请求，
+        //    // 则客户端仅执行第一个请求并跳过第二个请求，因为数据已保存在缓存中。
+        //    // KeyWords -> the caching-headers
+        //    // TODO 过滤不需要缓存的参数
+        //    publicStorage(createCacheStorage())
+        //}
     }
 }

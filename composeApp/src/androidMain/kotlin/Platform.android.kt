@@ -9,16 +9,24 @@ import org.wells.aeiou.database.AeiouDatabase
 
 class AndroidPlatform : Platform {
     override val name: String = "Android ${Build.VERSION.SDK_INT}"
+    override val datas: Datas
+        get() = object :Datas{
+            override val sqlDriver: SqlDriver
+                get() = createSqlDriver()
+            override val cacheStorage: CacheStorage
+                get() = createCacheStorage()
+
+        }
 }
 
 actual fun getPlatform(): Platform = AndroidPlatform()
 
-actual fun createSqlDriver(): SqlDriver {
+private fun createSqlDriver(): SqlDriver {
     return AndroidSqliteDriver(AeiouDatabase.Schema, AeiouApp.context, "aeiou.db")
 }
 
 // 下载模块
-actual fun createCacheStorage(): CacheStorage {
+private fun createCacheStorage(): CacheStorage {
     return object : CacheStorage {
         override suspend fun find(url: Url, varyKeys: Map<String, String>): CachedResponseData? {
             TODO("Not yet implemented")

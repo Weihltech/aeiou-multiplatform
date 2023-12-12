@@ -9,15 +9,23 @@ import platform.UIKit.UIDevice
 class IOSPlatform : Platform {
     override val name: String =
         UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
+    override val datas: Datas
+        get() = object :Datas{
+            override val sqlDriver: SqlDriver
+                get() = createSqlDriver()
+            override val cacheStorage: CacheStorage
+                get() = createCacheStorage()
+
+        }
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()
 
-actual fun createSqlDriver(): SqlDriver {
+private fun createSqlDriver(): SqlDriver {
     return NativeSqliteDriver(AeiouDatabase.Schema, "aeiou.db")
 }
 
-actual fun createCacheStorage(): CacheStorage {
+private fun createCacheStorage(): CacheStorage {
     return object : CacheStorage {
         override suspend fun find(url: Url, varyKeys: Map<String, String>): CachedResponseData? {
             TODO("Not yet implemented")
