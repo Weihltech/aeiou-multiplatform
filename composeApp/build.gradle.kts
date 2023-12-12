@@ -68,6 +68,7 @@ kotlin {
             implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.6")
             implementation("dev.icerock.moko:mvvm-core:0.16.1")
             implementation("dev.icerock.moko:mvvm-compose:0.16.1")
+            implementation("com.squareup.okio:okio:3.6.0")
 
         }
     }

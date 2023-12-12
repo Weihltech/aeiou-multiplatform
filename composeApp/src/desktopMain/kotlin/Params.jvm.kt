@@ -25,3 +25,11 @@ val cacheDir by lazy {
         }
     }
 }
+
+val downloadDir by lazy {
+    File("$rootDir/downloads").apply {
+        if (!exists()) {
+            mkdirs()
+        }
+    }.absolutePath ?: ""
+}

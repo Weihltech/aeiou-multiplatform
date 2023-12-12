@@ -13,6 +13,7 @@ import platform
 
 val aeiouSqlDriver by lazy { platform.datas.sqlDriver }
 val aeiouDatabase by lazy { AeiouDatabase(aeiouSqlDriver) }
+val aeiouFileSystem by lazy { platform.datas.downloadStorage.fileSystem }
 
 interface IBirdsRepository {
     suspend fun fetchAllBirds(): List<BirdInfo>
