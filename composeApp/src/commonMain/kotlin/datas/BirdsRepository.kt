@@ -24,7 +24,6 @@ class BirdsRepository : IBirdsRepository {
         val downTest = "https://cdn.pixabay.com/photo/2023/11/25/15/45/mountains-8411954_1280.jpg"
         Downloader().fetch(downTest)
 
-
         val local = BirdsLocal().fetchAllBirds()
         if (local.isNotEmpty()) {
 

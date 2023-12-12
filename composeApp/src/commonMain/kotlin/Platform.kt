@@ -6,7 +6,12 @@ import okio.FileSystem
 interface Platform {
     val name: String
     val datas: Datas
-    fun kamelFile(path: String): File
+    val utils: Utils
+}
+
+interface Utils {
+    fun unzip(zipFilePath: String, destDirectory: String)
+    fun toKamelFile(path: String): File
 }
 
 // App 数据层

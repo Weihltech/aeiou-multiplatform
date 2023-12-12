@@ -2,15 +2,9 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.jdbc.sqlite.JdbcSqliteDriver
 import io.ktor.client.plugins.cache.storage.CacheStorage
 import io.ktor.client.plugins.cache.storage.FileStorage
-import okio.BufferedSink
 import okio.FileSystem
-import okio.Okio
-import okio.Sink
-import okio.buffer
 import org.wells.aeiou.database.AeiouDatabase
-import java.io.File
-import kotlin.io.path.Path
-import kotlin.io.path.createDirectory
+import org.wells.aeiou.utils.Unzip
 
 class JVMPlatform : Platform {
     override val name: String = "Java ${System.getProperty("java.version")}"
@@ -24,10 +18,17 @@ class JVMPlatform : Platform {
                 get() = createDownloadStorage()
 
         }
+    override val utils: Utils
+        get() = object : Utils {
+            override fun unzip(zipFilePath: String, destDirectory: String) {
+                Unzip().start(zipFilePath, destDirectory)
+            }
 
-    override fun kamelFile(path: String): io.kamel.core.utils.File {
-        return io.kamel.core.utils.File(path)
-    }
+            override fun toKamelFile(path: String): io.kamel.core.utils.File {
+                return io.kamel.core.utils.File(path)
+            }
+
+        }
 
     private fun createSqlDriver(): SqlDriver {
         // "jdbc:sqlite:test.db" ，持久保存

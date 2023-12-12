@@ -7,6 +7,7 @@ import io.ktor.http.Url
 import okio.FileSystem
 import org.wells.aeiou.AeiouApp
 import org.wells.aeiou.database.AeiouDatabase
+import org.wells.aeiou.utils.Unzip
 
 class AndroidPlatform : Platform {
     override val name: String = "Android ${Build.VERSION.SDK_INT}"
@@ -20,11 +21,17 @@ class AndroidPlatform : Platform {
                 get() = createDownloadStorage()
 
         }
+    override val utils: Utils
+        get() = object : Utils {
+            override fun unzip(zipFilePath: String, destDirectory: String) {
+                Unzip().start(zipFilePath, destDirectory)
+            }
 
-    override fun kamelFile(path: String): io.kamel.core.utils.File {
-        return io.kamel.core.utils.File(path)
-    }
+            override fun toKamelFile(path: String): io.kamel.core.utils.File {
+                return io.kamel.core.utils.File(path)
+            }
 
+        }
 
     private fun createSqlDriver(): SqlDriver {
         return AndroidSqliteDriver(AeiouDatabase.Schema, AeiouApp.context, "aeiou.db")

@@ -1,6 +1,5 @@
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
-import io.kamel.core.utils.File
 import io.ktor.client.plugins.cache.storage.CacheStorage
 import io.ktor.client.plugins.cache.storage.CachedResponseData
 import io.ktor.http.Url
@@ -24,10 +23,17 @@ class IOSPlatform : Platform {
                 get() = createDownloadStorage()
 
         }
+    override val utils: Utils
+        get() = object : Utils {
+            override fun unzip(zipFilePath: String, destDirectory: String) {
+                // TODO ,暂时没有方案；思路，查看 Kotlin/Native 是否有响应的API ，参考 downloadCache Dir
+            }
 
-    override fun kamelFile(path: String): File {
-        return File(path)
-    }
+            override fun toKamelFile(path: String): io.kamel.core.utils.File {
+                return io.kamel.core.utils.File(path)
+            }
+
+        }
 
     private fun createDownloadStorage(): DownloadStorage {
         return object : DownloadStorage {

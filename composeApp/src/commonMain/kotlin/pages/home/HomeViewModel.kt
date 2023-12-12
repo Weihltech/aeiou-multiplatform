@@ -4,6 +4,7 @@ import datas.BirdsRepository
 import datas.remote.api.ApiBirds
 import datas.entitys.BirdInfo
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
+import io.kamel.core.utils.File
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -19,9 +20,8 @@ import platform
 
 data class HomeUiState(
     val birdInfos: List<BirdInfo> = emptyList(),
-    val downloadJPG: String = ""
-) {
-}
+    val downloadJPG: File = platform.utils.toKamelFile("")
+)
 
 class HomeViewModel : ViewModel() {
 
@@ -33,14 +33,14 @@ class HomeViewModel : ViewModel() {
         updateBirdImages()
     }
 
-    fun updateBirdImages() {
+    private fun updateBirdImages() {
         viewModelScope.launch {
             val datas = fetchBirdImages()
             _uiState.update {
                 it.copy(birdInfos = datas)
             }
             _uiState.update {
-                it.copy(downloadJPG = "${platform.datas.downloadStorage.dir}/mountains-8411954_1280.jpg")
+                it.copy(downloadJPG = platform.utils.toKamelFile("${platform.datas.downloadStorage.dir}/mountains-8411954_1280.jpg"))
             }
         }
     }

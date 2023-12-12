@@ -50,6 +50,13 @@ class Downloader {
             }
 
             println("A file saved to $path")
+
+            val destPath = "${downloadStorage.dir}/unzip"
+            val zipPath  = "${downloadStorage.dir}/abc.zip"
+            platform.utils.unzip(zipPath,destPath)
+
+            println("A file unzip")
+
         }
     }
 

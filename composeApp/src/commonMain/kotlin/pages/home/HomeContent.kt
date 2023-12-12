@@ -1,7 +1,6 @@
 package pages.home
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -26,10 +25,8 @@ import androidx.compose.ui.unit.dp
 import datas.entitys.BirdInfo
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import io.kamel.core.utils.File
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
-import platform
 import theme.AppTheme
 
 /**
@@ -71,7 +68,7 @@ fun Contents(tabSelectIndex: MutableState<Int>, homeUiState: HomeUiState) {
 fun starts(homeUiState: HomeUiState) {
     AnimatedVisibility(true) {
         KamelImage(
-            asyncPainterResource(platform.kamelFile(homeUiState.downloadJPG)),
+            asyncPainterResource(homeUiState.downloadJPG),
             null
         )
     }
