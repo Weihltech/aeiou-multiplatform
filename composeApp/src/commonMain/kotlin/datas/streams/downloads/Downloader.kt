@@ -5,14 +5,8 @@ import datas.httpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.prepareGet
 import io.ktor.client.statement.HttpResponse
-import io.ktor.client.statement.bodyAsChannel
 import io.ktor.client.statement.request
-import io.ktor.http.contentLength
 import io.ktor.util.date.GMTDate
-import io.ktor.utils.io.ByteReadChannel
-import io.ktor.utils.io.core.isEmpty
-import io.ktor.utils.io.core.readBytes
-import okio.BufferedSink
 import okio.Path
 import okio.Path.Companion.toPath
 import okio.buffer
@@ -51,11 +45,11 @@ class Downloader {
 
             println("A file saved to $path")
 
-            val destPath = "${downloadStorage.dir}/unzip"
-            val zipPath  = "${downloadStorage.dir}/abc.zip"
-            platform.utils.unzip(zipPath,destPath)
-
-            println("A file unzip")
+            //val destPath = "${downloadStorage.dir}/unzip"
+            //val zipPath  = "${downloadStorage.dir}/abc.zip"
+            //platform.utils.unzip(zipPath,destPath)
+            //
+            //println("A file unzip")
 
         }
     }
@@ -71,7 +65,7 @@ class Downloader {
 
         if (tempName.isNullOrBlank()) {
             val url = httpResponse.request.url.toString()
-            tempName = url.substring(url.lastIndexOf("/"),url.length)
+            tempName = url.substring(url.lastIndexOf("/"), url.length)
         }
 
         if (tempName.isNullOrBlank()) {

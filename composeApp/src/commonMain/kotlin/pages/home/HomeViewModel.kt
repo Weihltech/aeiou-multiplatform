@@ -3,6 +3,7 @@ package pages.home
 import datas.BirdsRepository
 import datas.remote.api.ApiBirds
 import datas.entitys.BirdInfo
+import datas.streams.downloads.Downloader
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import io.kamel.core.utils.File
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +32,14 @@ class HomeViewModel : ViewModel() {
 
     init {
         updateBirdImages()
+        downloadPNG()
+    }
+
+    private fun downloadPNG() {
+        viewModelScope.launch {
+            val bingPng = "https://cdn.pixabay.com/photo/2023/11/25/15/45/mountains-8411954_1280.jpg"
+            Downloader().fetch(bingPng)
+        }
     }
 
     private fun updateBirdImages() {
