@@ -65,7 +65,7 @@ https://github.com/ktorio/ktor-documentation/tree/2.3.7/codeSnippets/snippets
 ----
 关于 SQLite 主页
 https://www.sqlitetutorial.net/
-
+https://cashapp.github.io/sqldelight/2.0.1/multiplatform_sqlite/
 
 -------
 问答：

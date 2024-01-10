@@ -22,7 +22,8 @@ import org.jetbrains.compose.resources.painterResource
 
 private val items = listOf(
     MainBottomBarItem("News", "icbar/ic_news.xml"),
-    MainBottomBarItem("Starts", "icbar/ic_starts.xml"),
+    MainBottomBarItem("Collects", "icbar/ic_collects.xml"),
+    MainBottomBarItem("Chats", "icbar/ic_chats.xml"),
     MainBottomBarItem("Me", "icbar/ic_me.xml")
 )
 
