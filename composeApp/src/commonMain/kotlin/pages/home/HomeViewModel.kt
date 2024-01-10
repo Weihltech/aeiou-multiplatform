@@ -1,7 +1,7 @@
 package pages.home
 
+import androidx.compose.runtime.MutableState
 import datas.BirdsRepository
-import datas.remote.api.ApiBirds
 import datas.entitys.BirdInfo
 import datas.streams.downloads.Downloader
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
@@ -21,11 +21,21 @@ import platform
 
 data class HomeUiState(
     val birdInfos: List<BirdInfo> = emptyList(),
-    val downloadJPG: File = platform.utils.toKamelFile("")
+    val downloadJPG: File = platform.utils.toKamelFile(""),
+    val navBarItem: List<NavBarItem> = listOf(
+        NavBarItem("News", "icbar/ic_news.xml"),
+        NavBarItem("Collects", "icbar/ic_collects.xml"),
+        NavBarItem("Chats", "icbar/ic_chats.xml"),
+        NavBarItem("Me", "icbar/ic_me.xml")
+    ),
+)
+
+data class NavBarItem(
+    val name: String,
+    val icon: String
 )
 
 class HomeViewModel : ViewModel() {
-
 
     private val _uiState = MutableStateFlow(HomeUiState())
     val uiState: StateFlow<HomeUiState> = _uiState
@@ -37,7 +47,8 @@ class HomeViewModel : ViewModel() {
 
     private fun downloadPNG() {
         viewModelScope.launch {
-            val bingPng = "https://cdn.pixabay.com/photo/2023/11/25/15/45/mountains-8411954_1280.jpg"
+            val bingPng =
+                "https://cdn.pixabay.com/photo/2023/11/25/15/45/mountains-8411954_1280.jpg"
             Downloader().fetch(bingPng)
         }
     }

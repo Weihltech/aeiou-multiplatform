@@ -8,16 +8,23 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -27,6 +34,8 @@ import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
+import org.jetbrains.compose.resources.ExperimentalResourceApi
+import org.jetbrains.compose.resources.painterResource
 import theme.AppTheme
 
 /**
@@ -36,6 +45,7 @@ import theme.AppTheme
  * @date 2023/11/24
  */
 
+@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun HomeContent() {
     AppTheme {
@@ -44,24 +54,53 @@ fun HomeContent() {
         val uiState by viewModel.uiState.collectAsState()
 
         Column(modifier = Modifier.fillMaxSize()) {
-            val tabSelectIndex = remember { mutableStateOf(0) }
-            Box(modifier = Modifier.weight(1.0f, true)) {
-                Contents(tabSelectIndex, uiState)
+
+            val tabIndex = remember { mutableStateOf(0) }
+
+            Box(
+                modifier = Modifier.weight(1.0f, true).fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                when (tabIndex.value) {
+                    3 -> me(uiState)
+                    2 -> chats(uiState)
+                    1 -> starts(uiState)
+                    else -> news(uiState)
+                }
             }
-            HomeBottomBar(tabSelectIndex)
+
+            BottomNavigation(modifier = Modifier.fillMaxWidth().height(56.dp)) {
+                uiState.navBarItem.onEachIndexed { index, item ->
+                    BottomNavigationItem(
+                        icon = {
+                            Icon(painterResource(item.icon), null)
+                        },
+                        label = { Text(text = item.name) },
+                        selected = index == tabIndex.value,
+                        onClick = { tabIndex.value = index }
+                    )
+                }
+            }
+
         }
     }
 }
 
-@Composable
-fun Contents(tabSelectIndex: MutableState<Int>, homeUiState: HomeUiState) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        when (tabSelectIndex.value) {
-            1 -> starts(homeUiState)
-            else -> news(homeUiState)
-        }
 
-    }
+@Composable
+@Stable
+fun Contents(modifier: Modifier, uiState: HomeUiState) {
+
+}
+
+@Composable
+fun me(homeUiState: HomeUiState) {
+    Text("me")
+}
+
+@Composable
+fun chats(homeUiState: HomeUiState) {
+    Text("chats")
 }
 
 @Composable
